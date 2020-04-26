@@ -16,11 +16,7 @@ jar {
     manifestAttributes(manifest, project, 'Test')
 }
 
-artifacts {
-    archives sourcesJar
-    sources sourcesJar
-}
-
+configureSourcesJar()
 configureJavadocJar()
 
 compileKotlin {

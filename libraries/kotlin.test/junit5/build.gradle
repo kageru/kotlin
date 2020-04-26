@@ -21,11 +21,7 @@ jar {
     manifestAttributes(manifest, project, 'Test')
 }
 
-artifacts {
-    archives sourcesJar
-    sources sourcesJar
-}
-
+configureSourcesJar()
 configureJavadocJar()
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {

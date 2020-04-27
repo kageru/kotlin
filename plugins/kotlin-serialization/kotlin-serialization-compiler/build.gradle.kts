@@ -17,7 +17,7 @@ dependencies {
     compileOnly(project(":js:js.frontend"))
     compileOnly(project(":js:js.translator"))
 
-    runtime(kotlinStdlib())
+    runtimeOnly(kotlinStdlib())
 
     testCompile(projectTests(":compiler:tests-common"))
     testCompile(commonDep("junit:junit"))

@@ -168,7 +168,7 @@ private val defaultArgumentStubPhase = makeIrFilePhase(
     ::JvmDefaultArgumentStubGenerator,
     name = "DefaultArgumentsStubGenerator",
     description = "Generate synthetic stubs for functions with default parameter values",
-    prerequisite = setOf(localDeclarationsPhase)
+    prerequisite = setOf(localDeclarationsPhase, jvmStaticAnnotationPhase)
 )
 
 private val defaultArgumentCleanerPhase = makeIrFilePhase(
@@ -253,7 +253,7 @@ private val syntheticAccessorPhase = makeIrFilePhase(
     ::SyntheticAccessorLowering,
     name = "SyntheticAccessor",
     description = "Introduce synthetic accessors",
-    prerequisite = setOf(objectClassPhase, staticDefaultFunctionPhase, interfacePhase)
+    prerequisite = setOf(objectClassPhase, interfacePhase)
 )
 
 private val tailrecPhase = makeIrFilePhase(
@@ -324,6 +324,7 @@ private val jvmFilePhases =
         computeStringTrimPhase then
         jvmStringConcatenationLowering then
 
+        jvmStaticAnnotationPhase then
         defaultArgumentStubPhase then
         defaultArgumentInjectorPhase then
         defaultArgumentCleanerPhase then
@@ -350,8 +351,6 @@ private val jvmFilePhases =
         initializersCleanupPhase then
         collectionStubMethodLowering then
         functionNVarargBridgePhase then
-        jvmStaticAnnotationPhase then
-        staticDefaultFunctionPhase then
         bridgePhase then
         syntheticAccessorPhase then
 

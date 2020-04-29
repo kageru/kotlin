@@ -203,7 +203,7 @@ fun Project.standardPublicJars() {
     javadocJar()
 }
 
-fun Project.publish(moduleMetadata: Boolean = false) {
+fun Project.publish(moduleMetadata: Boolean = false, configure: MavenPublication.() -> Unit = { }) {
     apply<MavenPublishPlugin>()
     apply<SigningPlugin>()
 
@@ -243,8 +243,6 @@ fun Project.publish(moduleMetadata: Boolean = false) {
             create<MavenPublication>("Main") {
                 if (javaComponent != null) {
                     from(javaComponent)
-                } else {
-                    artifact(tasks["jar"])
                 }
 
                 pom {
@@ -270,6 +268,8 @@ fun Project.publish(moduleMetadata: Boolean = false) {
                         }
                     }
                 }
+
+                configure()
             }
         }
 

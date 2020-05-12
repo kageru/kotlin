@@ -9858,21 +9858,6 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
     @TestDataPath("$PROJECT_ROOT")
     @RunWith(JUnit3RunnerWithInners.class)
     public static class DefaultArguments extends AbstractLightAnalysisModeTest {
-        @TestMetadata("implementedByFake.kt")
-        public void ignoreImplementedByFake() throws Exception {
-            runTest("compiler/testData/codegen/box/defaultArguments/implementedByFake.kt");
-        }
-
-        @TestMetadata("implementedByFake2.kt")
-        public void ignoreImplementedByFake2() throws Exception {
-            runTest("compiler/testData/codegen/box/defaultArguments/implementedByFake2.kt");
-        }
-
-        @TestMetadata("implementedByFake3.kt")
-        public void ignoreImplementedByFake3() throws Exception {
-            runTest("compiler/testData/codegen/box/defaultArguments/implementedByFake3.kt");
-        }
-
         private void runTest(String testDataFilePath) throws Exception {
             KotlinTestUtils.runTest(this::doTest, TargetBackend.JVM, testDataFilePath);
         }
@@ -9889,6 +9874,21 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
         @TestMetadata("complexInheritance.kt")
         public void testComplexInheritance() throws Exception {
             runTest("compiler/testData/codegen/box/defaultArguments/complexInheritance.kt");
+        }
+
+        @TestMetadata("implementedByFake.kt")
+        public void testImplementedByFake() throws Exception {
+            runTest("compiler/testData/codegen/box/defaultArguments/implementedByFake.kt");
+        }
+
+        @TestMetadata("implementedByFake2.kt")
+        public void testImplementedByFake2() throws Exception {
+            runTest("compiler/testData/codegen/box/defaultArguments/implementedByFake2.kt");
+        }
+
+        @TestMetadata("implementedByFake3.kt")
+        public void testImplementedByFake3() throws Exception {
+            runTest("compiler/testData/codegen/box/defaultArguments/implementedByFake3.kt");
         }
 
         @TestMetadata("inheritedFromInterfaceViaAbstractSuperclass.kt")
@@ -10096,26 +10096,6 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
         @TestDataPath("$PROJECT_ROOT")
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Function extends AbstractLightAnalysisModeTest {
-            @TestMetadata("funInTraitChain.kt")
-            public void ignoreFunInTraitChain() throws Exception {
-                runTest("compiler/testData/codegen/box/defaultArguments/function/funInTraitChain.kt");
-            }
-
-            @TestMetadata("kt15971.kt")
-            public void ignoreKt15971() throws Exception {
-                runTest("compiler/testData/codegen/box/defaultArguments/function/kt15971.kt");
-            }
-
-            @TestMetadata("kt15971_2.kt")
-            public void ignoreKt15971_2() throws Exception {
-                runTest("compiler/testData/codegen/box/defaultArguments/function/kt15971_2.kt");
-            }
-
-            @TestMetadata("kt15971_3.kt")
-            public void ignoreKt15971_3() throws Exception {
-                runTest("compiler/testData/codegen/box/defaultArguments/function/kt15971_3.kt");
-            }
-
             private void runTest(String testDataFilePath) throws Exception {
                 KotlinTestUtils.runTest(this::doTest, TargetBackend.JVM, testDataFilePath);
             }
@@ -10184,6 +10164,11 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
                 runTest("compiler/testData/codegen/box/defaultArguments/function/funInTrait.kt");
             }
 
+            @TestMetadata("funInTraitChain.kt")
+            public void testFunInTraitChain() throws Exception {
+                runTest("compiler/testData/codegen/box/defaultArguments/function/funInTraitChain.kt");
+            }
+
             @TestMetadata("innerExtentionFunction.kt")
             public void testInnerExtentionFunction() throws Exception {
                 runTest("compiler/testData/codegen/box/defaultArguments/function/innerExtentionFunction.kt");
@@ -10202,6 +10187,21 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
             @TestMetadata("innerExtentionFunctionManyArgs.kt")
             public void testInnerExtentionFunctionManyArgs() throws Exception {
                 runTest("compiler/testData/codegen/box/defaultArguments/function/innerExtentionFunctionManyArgs.kt");
+            }
+
+            @TestMetadata("kt15971.kt")
+            public void testKt15971() throws Exception {
+                runTest("compiler/testData/codegen/box/defaultArguments/function/kt15971.kt");
+            }
+
+            @TestMetadata("kt15971_2.kt")
+            public void testKt15971_2() throws Exception {
+                runTest("compiler/testData/codegen/box/defaultArguments/function/kt15971_2.kt");
+            }
+
+            @TestMetadata("kt15971_3.kt")
+            public void testKt15971_3() throws Exception {
+                runTest("compiler/testData/codegen/box/defaultArguments/function/kt15971_3.kt");
             }
 
             @TestMetadata("kt36188.kt")
@@ -10788,11 +10788,6 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
     @TestDataPath("$PROJECT_ROOT")
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Delegation extends AbstractLightAnalysisModeTest {
-        @TestMetadata("withDefaultParameters.kt")
-        public void ignoreWithDefaultParameters() throws Exception {
-            runTest("compiler/testData/codegen/box/delegation/withDefaultParameters.kt");
-        }
-
         private void runTest(String testDataFilePath) throws Exception {
             KotlinTestUtils.runTest(this::doTest, TargetBackend.JVM, testDataFilePath);
         }
@@ -10869,6 +10864,11 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
         @TestMetadata("simple1.0.kt")
         public void testSimple1_0() throws Exception {
             runTest("compiler/testData/codegen/box/delegation/simple1.0.kt");
+        }
+
+        @TestMetadata("withDefaultParameters.kt")
+        public void testWithDefaultParameters() throws Exception {
+            runTest("compiler/testData/codegen/box/delegation/withDefaultParameters.kt");
         }
     }
 
@@ -14121,6 +14121,16 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
         @TestMetadata("kt38680.kt")
         public void testKt38680() throws Exception {
             runTest("compiler/testData/codegen/box/inlineClasses/kt38680.kt");
+        }
+
+        @TestMetadata("kt38680a.kt")
+        public void testKt38680a() throws Exception {
+            runTest("compiler/testData/codegen/box/inlineClasses/kt38680a.kt");
+        }
+
+        @TestMetadata("kt38680b.kt")
+        public void testKt38680b() throws Exception {
+            runTest("compiler/testData/codegen/box/inlineClasses/kt38680b.kt");
         }
 
         @TestMetadata("mangledDefaultParameterFunction.kt")
@@ -18619,11 +18629,6 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
         @TestDataPath("$PROJECT_ROOT")
         @RunWith(JUnit3RunnerWithInners.class)
         public static class DefaultArguments extends AbstractLightAnalysisModeTest {
-            @TestMetadata("delegatedExpectedInterface.kt")
-            public void ignoreDelegatedExpectedInterface() throws Exception {
-                runTest("compiler/testData/codegen/box/multiplatform/defaultArguments/delegatedExpectedInterface.kt");
-            }
-
             @TestMetadata("superCall.kt")
             public void ignoreSuperCall() throws Exception {
                 runTest("compiler/testData/codegen/box/multiplatform/defaultArguments/superCall.kt");
@@ -18655,6 +18660,11 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
             @TestMetadata("constructor.kt")
             public void testConstructor() throws Exception {
                 runTest("compiler/testData/codegen/box/multiplatform/defaultArguments/constructor.kt");
+            }
+
+            @TestMetadata("delegatedExpectedInterface.kt")
+            public void testDelegatedExpectedInterface() throws Exception {
+                runTest("compiler/testData/codegen/box/multiplatform/defaultArguments/delegatedExpectedInterface.kt");
             }
 
             @TestMetadata("dispatchReceiverValue.kt")

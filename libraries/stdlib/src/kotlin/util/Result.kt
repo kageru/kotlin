@@ -331,4 +331,45 @@ public inline fun <T> Result<T>.onSuccess(action: (value: T) -> Unit): Result<T>
     return this
 }
 
+/**
+ * Performs a given [transform] on the encapsulated value if this instance represents [success][Result.isSuccess].
+ * If the result of the given [transform] is a [success][Result.isSuccess],
+ * this function will return a [Result.success] containing the inner value of the result of [transform].
+ * If either this instance or the result of [transform] is a [failure][Result.isFailure],
+ * this function will return a [Result.Failure] containing the [Throwable].
+ */
+@InlineOnly
+public inline fun <R, T> Result<T>.flatMap(transform: (value: T) -> Result<R>): Result<R> {
+    contract {
+        callsInPlace(transform, InvocationKind.AT_MOST_ONCE)
+    }
+    return when {
+        isSuccess -> {
+            val inner = transform(value as T)
+            if (inner.isSuccess) Result.success(inner.value as R)
+            else Result(inner.value)
+        }
+        else -> Result(value)
+    }
+}
+
+/**
+ * Flattens a [Result].
+ * If the current instance represents [success][Result.isSuccess]
+ * and the contained value also represents [success][Result.isSuccess],
+ * this function returns a [success][Result.isSuccess] containing the value of the inner result.
+ * If either this instance or the encapsulated value represent [failure][Result.Failure],
+ * this function returns a [failure][Result.Failure] containing the [Throwable].
+ */
+public fun <T> Result<Result<T>>.flatten(): Result<T> {
+    return when {
+        isSuccess -> {
+            val inner = value as Result<T>
+            if (inner.isSuccess) Result.success(inner.value as T)
+            else Result(value)
+        }
+        else -> Result(value)
+    }
+}
+
 // -------------------

@@ -39,6 +39,18 @@ class ResultTest {
         checkFailure(fail, "F", true)
     }
 
+    @Test
+    fun testFlattenFailure() {
+        val fail = Result.success(Result.failure<Unit>(CustomException("F"))).flatten()
+        checkFailure(fail, "F", true)
+    }
+
+    @Test
+    fun testFlattenSuccess() {
+        val ok = Result.success(Result.success("OK")).flatten()
+        checkSuccess(ok, "OK", true)
+    }
+
     private fun <T> checkSuccess(ok: Result<T>, v: T, topLevel: Boolean = false) {
         assertTrue(ok.isSuccess)
         assertFalse(ok.isFailure)
@@ -60,6 +72,8 @@ class ResultTest {
             checkSuccess(ok.recover { 42 }, "OK")
             checkSuccess(ok.recoverCatching { 42 }, "OK")
             checkSuccess(ok.recoverCatching { error("FAIL") }, "OK")
+            checkSuccess(ok.flatMap { Result.success(it) }, "OK")
+            checkFailure(ok.flatMap { Result.failure<Unit>(CustomException("FAIL")) }, "FAIL")
         }
         var sCnt = 0
         var fCnt = 0
@@ -90,6 +104,8 @@ class ResultTest {
             checkSuccess(fail.recover { 42 }, 42)
             checkSuccess(fail.recoverCatching { 42 }, 42)
             checkFailure(fail.recoverCatching { error("FAIL") }, "FAIL")
+            checkFailure(fail.flatMap { Result.success(Unit) }, msg)
+            checkFailure(fail.flatMap { Result.failure<Unit>(CustomException("FAIL2")) }, msg)
         }
         var sCnt = 0
         var fCnt = 0

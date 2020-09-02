@@ -239,6 +239,16 @@ class Maps {
         }
 
         @Sample
+        fun filterValuesNotNull() {
+            val originalMap = mapOf("key1" to 1, "key2" to 2, "key3" to null)
+
+            val filteredMap = originalMap.filterValuesNotNull()
+            assertPrints(filteredMap, "{key1=1, key2=2}")
+            // original map has not changed
+            assertPrints(originalMap, "{key1=1, key2=2, key3=null}")
+        }
+
+        @Sample
         fun filterTo() {
             val originalMap = mapOf("key1" to 1, "key2" to 2, "key3" to 3)
             val destinationMap = mutableMapOf("key40" to 40, "key50" to 50)

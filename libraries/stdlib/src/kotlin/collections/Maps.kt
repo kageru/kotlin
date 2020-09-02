@@ -483,6 +483,21 @@ public inline fun <K, V> Map<out K, V>.filterValues(predicate: (V) -> Boolean): 
     return result
 }
 
+/**
+ * Returns a map containing all key-value pairs with nonnull values.
+ *
+ * The returned map preserves the entry iteration order of the original map.
+ * @sample samples.collections.Maps.Filtering.filterValuesNotNull
+ */
+public fun <K, V> Map<out K, V?>.filterValuesNotNull(): Map<K, V> {
+    val result = LinkedHashMap<K, V>()
+    for ((key, value) in this) {
+        if (value != null) {
+            result.put(key, value)
+        }
+    }
+    return result
+}
 
 /**
  * Appends all entries matching the given [predicate] into the mutable map given as [destination] parameter.
